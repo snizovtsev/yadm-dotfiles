@@ -1,0 +1,21 @@
+$include /etc/inputrc
+
+#  Kill  the  word  behind  point, using white space and the slash character as the word boundaries
+set bind-tty-special-chars Off
+\C-w:unix-filename-rubout
+
+# Understand terminal paste boundary
+set enable-bracketed-paste On
+
+# Visualize node stat(2) information in completions
+set colored-stats on
+set visible-stats on
+
+# Sets the maximum number of characters to be the common prefix to display for completions.
+# If the common prefix has more than X characters, they are replaced by ellipsis.
+# For example, assume we are in a directory with files Screenshot_20170730.png and Screenshot_20170731.png.
+# If using the default option, an auto completion prints Screenshot_20170730.png Screenshot_20170731.png.
+# If this option is set, then the auto completion prints ...0.png ...1.png.
+# However, if the common prefix is very short (fewer or equal to 3 characters), the full file names are still printed.
+# For example, in a directory with files S10.png and S11.png, an auto completion still prints S10.png S11.png.
+set completion-prefix-display-length 3
