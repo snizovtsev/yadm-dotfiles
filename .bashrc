@@ -5,10 +5,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-. /usr/share/doc/pkgfile/command-not-found.bash
+if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]; then
+  . /usr/share/doc/pkgfile/command-not-found.bash
+fi
 
 if [[ -r /usr/share/doc/mcfly/mcfly.bash ]]; then
-  source /usr/share/doc/mcfly/mcfly.bash
+  . /usr/share/doc/mcfly/mcfly.bash
 fi
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
