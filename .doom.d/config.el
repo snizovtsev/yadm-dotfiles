@@ -6,6 +6,10 @@
               mouse-wheel-scroll-amount '(5 ((shift) . 2))
               mouse-wheel-progressive-speed nil)
 
+(setq projectile-project-search-path
+      '("~/projects/"
+        "~/opensource/"))
+
 (map! :n "C-h" 'evil-window-left
       :n "C-l" 'evil-window-right
       :n "C-j" 'evil-window-down
