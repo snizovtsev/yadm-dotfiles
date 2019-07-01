@@ -67,9 +67,10 @@ unset YELLOW RESET SPACE1
 # Configure bash behaviour
 #
 
-shopt -s checkwinsize # check the terminal size when it regains control
 shopt -s autocd       # cd without cd
-shopt -s histappend   # enable history appending instead of overwriting when exiting
+shopt -s checkwinsize # check the terminal size when it regains control
+shopt -s globstar     # turn on recursive globbing
+shopt -s histappend   # append history file, don't overwrite it
 shopt -s lithist      # preserve mulitline commands in the history
 
 #
