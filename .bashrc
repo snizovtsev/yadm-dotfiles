@@ -50,6 +50,15 @@ fi
 # the history will halt the shell prompt until it's finished.
 PROMPT_COMMAND='history -a'
 
+# Huge history
+HISTSIZE=500 # Longer sessions is probably an accident copy-paste
+HISTFILESIZE=10000
+
+# Helpful history
+HISTCONTROL="ignoredups:ignorespace"
+HISTTIMEFORMAT='%F %T ' # Enable timestamping and show it in ISO 8601 format
+export HISTIGNORE="ls:bg *:fg *:df *"
+
 # If set to a number greater than zero, the value is used as the number of
 # trailing directory components to retain when expanding the \w and \W prompt
 # string escapes. Characters removed are replaced with an ellipsis.
@@ -71,7 +80,9 @@ shopt -s autocd       # cd without cd
 shopt -s checkwinsize # check the terminal size when it regains control
 shopt -s globstar     # turn on recursive globbing
 shopt -s histappend   # append history file, don't overwrite it
-shopt -s lithist      # preserve mulitline commands in the history
+shopt -s cmdhist      # preserve mulitline commands in the history 
+shopt -s lithist      # ... and store them as embedded newlines
+shopt -s histverify   # verify history expansions before executing
 
 #
 # Configure keyboard bindings

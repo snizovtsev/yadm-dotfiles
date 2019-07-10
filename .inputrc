@@ -14,18 +14,18 @@ set visible-stats on
 
 # Collapse completed items like ...0.png ...1.png
 set completion-prefix-display-length 4
-
+# Display matches for ambiguous patterns at first tab press
+set show-all-if-ambiguous on
 # Attempt to place pointer at the preserved column
 set history-preserve-point on
+# Treat hyphens and underscores as equivalent
+set completion-ignore-case on
+set completion-map-case on
 
 # Append slash to completed directory names
 set mark-directories on
-
 # Notify that history line was modified
 set mark-modified-lines on
-
-# Don't press Tab twice
-set show-all-if-ambiguous on
 
 # Other options that doesn't need to comment
 set bell-style audible
@@ -33,3 +33,8 @@ set expand-tilde off
 set horizontal-scroll-mode off
 set match-hidden-files off
 set page-completions on
+
+$if Bash
+    # Expand history by space
+    Space: magic-space
+$endif
