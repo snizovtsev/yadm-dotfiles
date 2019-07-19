@@ -1,0 +1,18 @@
+[libdefaults]
+  dns_lookup_kdc = true
+  dns_lookup_realm = true
+  ticket_lifetime = 24h
+  renew_lifetime = 7d
+  forwardable = true
+  rdns = false
+  default_realm = {{ ad_server.domain|upper }} 
+  default_ccache_name = KEYRING:persistent:%{uid}
+
+[realms]
+  {{ ad_server.domain|upper }} = {
+    default_domain = {{ ad_server.domain }}
+  }
+
+[domain realm]
+.{{ad_server.domain}} = {{ ad_server.domain|upper }}
+{{ad_server.domain}} = {{ ad_server.domain|upper }}

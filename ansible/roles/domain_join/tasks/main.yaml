@@ -1,0 +1,90 @@
+---
+- name: Installing Required packages
+  package: 
+    state: present
+    name: "{{ pkgs }}"
+
+- name: Setup chrony NTP client
+  notify: restart chronyd
+  augeas:
+    command: set
+    path: etc/chrony.conf/pool
+    value: "{{ ad_server.ntp }}"
+
+- name: Setup timesyncd NTP client
+  ini_file:
+    path: /etc/systemd/timesyncd.conf
+    section: Time
+    option: NTP
+    value: "{{ ad_server.ntp }}"
+
+- name: Create realmd.conf
+  template:
+    src: templates/realmd.conf.j2
+    dest: /etc/realmd.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Join linux into domain
+  expect:
+    creates: /etc/krb5.keytab
+    command: /usr/sbin/realm -v join {{ ad_server.domain }} --user={{ ad_server.user }}
+    responses:
+      Password.*: "{{ ad_server.pass }}"
+
+- name: Create krb5.conf
+  template:
+    src: templates/krb5.conf.j2
+    dest: "/etc/krb5.conf.d/{{ ad_server.domain }}"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Configure Samba
+  augeas:
+    command: set
+    path: "etc/samba/smb.conf/target[.='global']/{{ item.option }}"
+    value: "{{ item.value }}"
+  with_items:
+    - option: workgroup
+      value: "{{ ad_server.workgroup }}"
+    - option: security
+      value: ads
+    - option: passdb backend
+      value: tdbsam
+    - option: realm
+      value: "{{ ad_server.domain|upper }}"
+    - option: kerberos method
+      value: secrets and keytab
+    - option: machine password timeout
+      value: 0
+    - option: client signing
+      value: "yes"
+    - option: client use spnego
+      value: "yes"
+    - option: client max protocol
+      value: SMB3
+    - option: local master
+      value: "no"
+    - option: load printers
+      value: "no"
+    - option: cups options
+      value: raw
+
+- name: Configure sssd
+  notify: restart sssd
+  template:
+    src: templates/sssd.conf.j2
+    dest: /etc/sssd/sssd.conf
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Updating sudoers for Local Admin users
+  lineinfile: 
+     path: /etc/sudoers
+     state: present
+     regexp: '^%locadmin_users'
+     line: '%locadmin_users ALL=(ALL:ALL) ALL'
+     validate: 'visudo -cf %s'

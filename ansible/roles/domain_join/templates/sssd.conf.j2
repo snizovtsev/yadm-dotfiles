@@ -1,0 +1,33 @@
+[sssd]
+config_file_version = 2
+services = nss, pam, ifp, pac
+domains = {{ ad_server.domain }} 
+
+[nss]
+default_shell = /bin/bash
+shell_fallback = /bin/bash
+override_homedir = %H
+fallback_homedir = /home/%u
+enum_cache_timeout = 360
+filter_users = root
+filter_groups = root, wheel, adm
+
+[domain/{{ ad_server.domain }}]
+ad_domain = {{ ad_server.domain }} 
+krb5_realm = {{ ad_server.domain | upper}} 
+ldap_uri = ldaps://{{ ad_server.domain }}
+override_homedir = /home/%u
+enumerate = false
+id_provider = ad
+sudo_provider = none
+autofs_provider = none
+lookup_family_order = ipv4_only
+dyndns_update = false
+auth_provider = krb5
+access_provider = ad
+chpass_provider = ad
+cache_credentials = true
+ldap_search_base = dc=avp,dc=ru
+ldap_schema = ad
+ldap_sasl_mech = GSSAPI
+ldap_krb5_keytab = /etc/krb5.keytab

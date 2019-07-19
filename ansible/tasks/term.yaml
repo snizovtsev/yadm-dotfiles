@@ -1,0 +1,6 @@
+---
+- name: Fix blinking red completions
+  lineinfile:
+    path: /etc/DIR_COLORS.256color
+    regexp: '^MISSING '
+    line: '???'

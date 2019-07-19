@@ -1,0 +1,74 @@
+---
+- name: Add COPR repositories
+  yum_repository:
+    enablegroups: false
+    includepkgs: "{{ item.pkgs }}"
+    skip_if_unavailable: yes
+    name: "{{ item.user }}-{{ item.repo }}"
+    description: "Copr repo for {{ item.pkgs }} owned by {{ item.user }}"
+    baseurl: "https://copr-be.cloud.fedoraproject.org/results/{{ item.user }}/{{ item.repo }}/fedora-$releasever-$basearch/"
+    gpgkey: "https://copr-be.cloud.fedoraproject.org/results/{{ item.user }}/{{ item.repo }}/pubkey.gpg"
+  with_items:
+    - user: thelocehiliosan
+      repo: yadm
+      pkgs: yadm
+    - user: zawertun
+      repo: hack-fonts
+      pkgs: hack-fonts
+    - user: pschyska
+      repo: alacritty
+      pkgs: alacritty
+
+- name: Install my favourite tools
+  package:
+    state: present
+    name:
+      - augeas
+      - direnv
+      - fzf
+      - git
+      - htop
+      - httpie
+      - iperf3
+      - jq
+      - mc
+      - moreutils
+      - patchelf
+      - proxychains-ng
+      - ranger
+      - strace
+      - sysfsutils
+      - the_silver_searcher
+      - tldr
+      - tmux
+      - vim-enhanced
+      - wireshark-cli
+      - yadm
+      - zsh
+
+- name: Install development tools
+  package:
+    state: present
+    name:
+      - '@development-tools'
+      - '@c-development'
+      - alacritty
+      - bear
+      - buildah
+      - ccls
+      - cmake
+      - devscripts
+      - emacs
+      - fedora-toolbox
+      - firefox-wayland
+      - graphviz
+      - hack-fonts
+      - meson
+      - podman
+      - podman-docker
+      - python3-ipdb
+      - python3-ipython
+      - python3-matplotlib-doc
+      - python3-matplotlib-gtk3
+      - python3-numpy-doc
+      - wireshark

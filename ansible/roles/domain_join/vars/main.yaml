@@ -1,0 +1,13 @@
+---
+java_8_jce_url: "http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip"
+pkgs: 
+  - python3-pexpect
+  - realmd
+  - sssd
+  - libsss_simpleifp
+  - oddjob
+  - oddjob-mkhomedir
+  - adcli
+  - samba-common
+  - samba-common-tools
+  - krb5-workstation

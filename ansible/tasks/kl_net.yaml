@@ -1,0 +1,11 @@
+- name: Install corporate root CAs
+  notify: update ca trust
+  copy:
+    src: files/KasperskyLabGlobalCAG2.cer
+    dest: /etc/pki/ca-trust/source/anchors
+
+#  - name: Enable CNTLM on startup
+#    systemd:
+#      name: cntlm.service
+#      state: started
+#      enabled: yes

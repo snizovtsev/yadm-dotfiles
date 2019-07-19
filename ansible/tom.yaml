@@ -1,0 +1,31 @@
+---
+- name: Playbook to configure office workstation
+  hosts: localhost
+  connection: local
+  vars_files:
+    - vars/kl.yaml
+
+  roles:
+    - domain_join
+
+  tasks:
+  - name: Install packages
+    import_tasks: tasks/fedora_pkgs.yaml
+
+  - name: Configure network
+    import_tasks: tasks/kl_net.yaml
+
+#  - name: Configure terminal
+#    import_tasks: tasks/term.yaml
+
+  - name: Enable system services
+    systemd:
+      enabled: yes
+      name: "{{ item }}"
+    with_items:
+      - sshd.service
+      - fstrim.timer
+    
+  handlers:
+  - name: update ca trust
+    command: update-ca-trust
