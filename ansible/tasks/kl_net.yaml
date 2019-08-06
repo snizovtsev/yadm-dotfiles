@@ -1,4 +1,10 @@
-- name: Install corporate root CAs
+- name: Install KL root CA
+  notify: update ca trust
+  copy:
+    src: files/kasperskylabsrootca.cer
+    dest: /etc/pki/ca-trust/source/anchors
+
+- name: Install KL Global CA G2
   notify: update ca trust
   copy:
     src: files/KasperskyLabGlobalCAG2.cer
