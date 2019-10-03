@@ -4,7 +4,10 @@
               user-mail-address "snizovtsev@gmail.com"
               scroll-margin 3
               mouse-wheel-scroll-amount '(5 ((shift) . 2))
-              mouse-wheel-progressive-speed nil)
+              mouse-wheel-progressive-speed nil
+              doom-font (font-spec :family "Hack" :size 15))
+
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
 (setq projectile-project-search-path
       '("~/projects/"

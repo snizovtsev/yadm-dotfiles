@@ -6,7 +6,6 @@
   forwardable = true
   rdns = false
   default_realm = {{ ad_server.domain|upper }} 
-  default_ccache_name = KEYRING:persistent:%{uid}
 
 [realms]
   {{ ad_server.domain|upper }} = {

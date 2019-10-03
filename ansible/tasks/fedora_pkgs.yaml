@@ -19,12 +19,23 @@
       repo: alacritty
       pkgs: alacritty
 
+- name: Add Azure CLI repository
+  yum_repository:
+    enablegroups: false
+    includepkgs: azure-cli
+    skip_if_unavailable: yes
+    name: microsoft-azure-cli
+    description: "Azure CLI"
+    baseurl: "https://packages.microsoft.com/yumrepos/azure-cli"
+    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+
 - name: Install my favourite tools
   package:
     state: present
     name:
       - augeas
       - direnv
+      - expect
       - fzf
       - git
       - htop
@@ -53,6 +64,7 @@
       - '@development-tools'
       - '@c-development'
       - alacritty
+      - azure-cli
       - bear
       - buildah
       - ccls
@@ -61,6 +73,7 @@
       - emacs
       - fedora-toolbox
       - firefox-wayland
+      - golang
       - graphviz
       - hack-fonts
       - meson

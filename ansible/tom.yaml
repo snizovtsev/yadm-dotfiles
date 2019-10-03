@@ -15,9 +15,6 @@
   - name: Configure network
     import_tasks: tasks/kl_net.yaml
 
-#  - name: Configure terminal
-#    import_tasks: tasks/term.yaml
-
   - name: Enable system services
     systemd:
       enabled: yes
@@ -29,3 +26,5 @@
   handlers:
   - name: update ca trust
     command: update-ca-trust
+#  - name: Configure terminal
+#    import_tasks: tasks/term.yaml
