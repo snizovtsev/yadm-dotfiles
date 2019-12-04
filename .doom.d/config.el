@@ -42,6 +42,11 @@
   (setq ccls-sem-highlight-method 'font-lock)
   (ccls-use-default-rainbow-sem-highlight))
 
+(put 'ccls-initialization-options 'safe-local-variable 'listp)
+(put 'projectile-enable-caching 'safe-local-variable 'booleanp)
+(put 'projectile-project-compilation-dir 'safe-local-variable 'stringp)
+(put 'indent-region-function 'safe-local-variable 'booleanp)
+
 (def-package! meson-mode
   :init
   (add-hook! 'meson-mode-hook 'company-mode))

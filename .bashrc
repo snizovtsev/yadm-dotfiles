@@ -64,13 +64,13 @@ export HISTIGNORE="ls:bg *:fg *:df *"
 # string escapes. Characters removed are replaced with an ellipsis.
 PROMPT_DIRTRIM=4
 
-SPACE1=" "
 YELLOW="\[$(tput setaf 3)\]"
 RESET="\[$(tput sgr0)\]"
-PS1="${YELLOW}[${RESET}\u@\h \w${YELLOW}]${RESET}\$${SPACE1}"
-PROMPT_MARKER=$SPACE1
-unset YELLOW RESET SPACE1
-
+PROMPT_MARKER=" "
+#PS1="${YELLOW}[${RESET}\u@\h \w${YELLOW}]${RESET}\$${PROMPT_MARKER}"
+PS1="\$${PROMPT_MARKER}"
+PROMPT_COMMAND=~/mimir
+unset YELLOW RESET
 
 #
 # Configure bash behaviour

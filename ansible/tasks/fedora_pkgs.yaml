@@ -35,8 +35,10 @@
     name:
       - augeas
       - direnv
+      - editorconfig
       - expect
       - fzf
+      - pipenv
       - git
       - htop
       - httpie

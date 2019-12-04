@@ -25,7 +25,7 @@ set completion-map-case on
 # Append slash to completed directory names
 set mark-directories on
 # Notify that history line was modified
-set mark-modified-lines on
+#set mark-modified-lines on
 
 # Other options that doesn't need to comment
 set bell-style audible
