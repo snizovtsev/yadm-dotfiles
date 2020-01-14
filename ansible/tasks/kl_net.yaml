@@ -10,6 +10,12 @@
     src: files/KasperskyLabGlobalCAG2.cer
     dest: /etc/pki/ca-trust/source/anchors
 
+- name: Install KL Server Auth CA G3
+  notify: update ca trust
+  copy:
+    src: "files/Kaspersky Server Authentication CA G3.cer"
+    dest: /etc/pki/ca-trust/source/anchors
+
 #  - name: Enable CNTLM on startup
 #    systemd:
 #      name: cntlm.service
