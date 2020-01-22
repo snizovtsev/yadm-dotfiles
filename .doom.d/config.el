@@ -7,7 +7,11 @@
               mouse-wheel-progressive-speed nil
               doom-font (font-spec :family "Hack" :size 15))
 
-(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+(add-hook! 'doom-init-ui-hook
+  (defun configure-frame-h ()
+    (modify-frame-parameters nil '((undecorated . t)
+                                   (fullscreen . maximized)))
+    ))
 
 (setq projectile-project-search-path
       '("~/projects/"
@@ -47,6 +51,6 @@
 (put 'projectile-project-compilation-dir 'safe-local-variable 'stringp)
 (put 'indent-region-function 'safe-local-variable 'booleanp)
 
-(def-package! meson-mode
+(use-package! meson-mode
   :init
   (add-hook! 'meson-mode-hook 'company-mode))
