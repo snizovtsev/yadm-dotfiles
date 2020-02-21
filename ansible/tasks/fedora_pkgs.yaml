@@ -18,6 +18,8 @@
     - user: pschyska
       repo: alacritty
       pkgs: alacritty
+    - user: kvaneesh
+      repo: emacs
 
 - name: Add Azure CLI repository
   yum_repository:
