@@ -51,8 +51,8 @@ fi
 PROMPT_COMMAND='history -a'
 
 # Huge history
-HISTSIZE=500 # Longer sessions is probably an accident copy-paste
-HISTFILESIZE=10000
+HISTSIZE=1000 # Longer sessions is probably an accident copy-paste
+HISTFILESIZE=30000
 
 # Helpful history
 HISTCONTROL="ignoredups:ignorespace"
