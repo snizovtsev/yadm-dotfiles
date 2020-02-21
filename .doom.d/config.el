@@ -49,8 +49,14 @@
 (put 'ccls-initialization-options 'safe-local-variable 'listp)
 (put 'projectile-enable-caching 'safe-local-variable 'booleanp)
 (put 'projectile-project-compilation-dir 'safe-local-variable 'stringp)
+(put 'compile-command 'safe-local-variable 'stringp)
+(put 'run-command 'safe-local-variable 'stringp)
+(put 'test-command 'safe-local-variable 'stringp)
 (put 'indent-region-function 'safe-local-variable 'booleanp)
+(put 'doom-modeline-buffer-file-name-style 'safe-local-variable 'atom)
 
 (use-package! meson-mode
   :init
   (add-hook! 'meson-mode-hook 'company-mode))
+
+(use-package! vagrant-tramp)

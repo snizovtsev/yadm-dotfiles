@@ -9,3 +9,4 @@
 ; (package! symbol-overlay)
 
 (package! meson-mode)
+(package! vagrant-tramp)
