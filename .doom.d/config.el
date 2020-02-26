@@ -54,6 +54,10 @@
 (put 'test-command 'safe-local-variable 'stringp)
 (put 'indent-region-function 'safe-local-variable 'booleanp)
 (put 'doom-modeline-buffer-file-name-style 'safe-local-variable 'atom)
+(put 'lsp-file-watch-ignored 'safe-local-variable 'listp)
+(put 'lsp-file-watch-threshold 'safe-local-variable 'integerp)
+(put 'lsp-file-watch-threshold 'safe-local-variable 'integerp)
+(put 'display-line-numbers 'safe-local-variable 'booleanp)
 
 (use-package! meson-mode
   :init
